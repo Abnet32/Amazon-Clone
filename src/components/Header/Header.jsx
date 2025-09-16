@@ -8,8 +8,8 @@ import { LiaCartArrowDownSolid } from "react-icons/lia";
 import classes from "./Header.module.css";
 import LowerHeader from "./LowerHeader";
 import { Link } from "react-router-dom";
-import { DataContext } from "../DataProvider/DataProvider";
-import { auth } from "../../Utility/firebase";
+// import { DataContext } from "../DataProvider/DataProvider";
+// import { auth } from "../../Utility/firebase";
 const Header = () => {
   const [{ basket, user }, dispatch] = useContext(DataContext);
   const totalItem = basket?.reduce((amount, item) => {
