@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
 import ProductCard from "./ProductCard";
 import classes from "./product.module.css";
+import { productUrl } from "../../API/endPoint";
+
 
 function Product() {
   const [products, setProducts] = useState([]);
@@ -8,10 +11,11 @@ function Product() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://fakestoreapi.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data);
+    axios
+      .get(`${productUrl}/products`)
+      .then((res) => {
+        // Axios automatically parses JSON
+        setProducts(res.data);
         setIsLoading(false);
       })
       .catch((err) => {

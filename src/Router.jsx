@@ -5,8 +5,8 @@ import Auth from "./Pages/Auth/Auth";
 // import Payment from "./Pages/Payment/Payment";
 // import Orders from "./Pages/Orders/Orders";
 import Cart from "./Pages/Cart/Cart";
-// import Results from "./Pages/Results/Results";
-// import ProductDetail from "./Pages/ProductDetail/ProductDetail";
+import Results from "./Pages/Results/Results";
+import ProductDetail from "./Pages/ProductDetail/ProductDetail";
 // import { Elements } from "@stripe/react-stripe-js";
 // import { loadStripe } from "@stripe/stripe-js";
 // import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
@@ -43,8 +43,8 @@ function Routing() {
             </ProtectedRoute>
           }
         /> */}
-        {/* <Route path="/category/:categoryName" element={<Results />} /> */}
-        {/* <Route path="/products/:productId" element={<ProductDetail />} /> */}
+        <Route path="/category/:categoryName" element={<Results />} />
+        <Route path="/products/:productId" element={<ProductDetail />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
     </Router>

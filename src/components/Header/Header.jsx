@@ -3,6 +3,7 @@ import flag from "../../assets/images/flag.png";
 import { SlLocationPin } from "react-icons/sl";
 import { FaSearch } from "react-icons/fa";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
+import { Link } from "react-router";
 
 import classes from "./Header.module.css";
 import LowerHeader from "./LowerHeader";
@@ -13,9 +14,9 @@ const Header = () => {
       <div className={classes.header__container}>
         {/* logo */}
         <div className={classes.logo__container}>
-          <div to="/">
+          <Link to="/">
             <img src={logo} alt="amazon logo" />
-          </div>
+          </Link>
           <div className={classes.delivery}>
             {/* delivery */}
             <span>
@@ -39,7 +40,7 @@ const Header = () => {
         </div>
         {/* rigth-side */}
         <div className={classes.order__container}>
-          <div
+          <Link
             to="
             "
             className={classes.language}
@@ -49,21 +50,21 @@ const Header = () => {
             <select>
               <option value="">EN</option>
             </select>
-          </div>
+          </Link>
           <div>
             <div>
               <p>Hello, Sign In</p>
               <span>Account & Lists</span>
             </div>
           </div>
-          <div to="/orders">
+          <Link href="/orders">
             <p>Returns</p>
             <span>& Orders</span>
-          </div>
-          <div to="/cart" className={classes.cart}>
+          </Link>
+          <Link href="/cart" className={classes.cart}>
             <LiaCartArrowDownSolid size={35} />
             <span>0</span>
-          </div>
+          </Link>
         </div>
       </div>
       <LowerHeader />
