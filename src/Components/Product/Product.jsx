@@ -1,39 +1,37 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
 import classes from "./product.module.css";
-import axios from "axios";
-// import Loader from "../Loader/Loader";
+
 function Product() {
-  const [product, setProduct] = useState([]);
-  // const [isLoading, setIsLoading] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // setIsLoading(true);
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((res) => {
-        // console.log(res.data);
-        setProduct(res.data);
-        // setIsLoading(false);
+    setIsLoading(true);
+    fetch("https://fakestoreapi.com/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setIsLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
-        // setIsLoading(false);
+      .catch((err) => {
+        console.error("Error fetching products:", err);
+        setIsLoading(false);
       });
   }, []);
-  //   console.log(product);
+
   return (
-    <>
-      {/* {isLoading ? (
-        <Loader />
-      ) : ( */}
-        <section className={classes.products__container}>
-          {product.map((singleProduct, i) => (
-            <ProductCard product={singleProduct} key={i} renderAdd={true} />
+    <div className={classes.container}>
+      {isLoading ? (
+        <p className={classes.loading}>Loading products...</p>
+      ) : (
+        <div className={classes.grid}>
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
           ))}
-        </section>
-      {/* )} */}
-    </>
+        </div>
+      )}
+    </div>
   );
 }
 
