@@ -9,12 +9,13 @@ const LowerHeader = () => {
           <AiOutlineMenu />
           <p>All</p>
         </li>
-        <li>Today's Deals</li>
-        <li>Customer Service</li>
-        <li>Registry</li>
-        <li>Gift Cards</li>
-        <li>Sell</li>
-        <li>Shop the Gaming Store</li>
+        <li>Amzon Haul</li>
+        <li>Books</li>
+        <li>Early Prime Deals</li>
+        <li>Medical Care</li>
+        <li>Best Sellers</li>
+        <li>Amazon Basics</li>
+        <li>Prime Big Deal Day is October 7-8</li>
       </ul>
     </div>
   );
