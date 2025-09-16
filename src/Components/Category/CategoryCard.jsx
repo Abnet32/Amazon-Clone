@@ -1,6 +1,6 @@
 import classes from "./category.module.css";
 // import { Link } from "react-router-dom";
-function CategoryCard({ title, imgLink }) {
+function CategoryCard({ title, imgLink}) {
   return (
     <div className={classes.category}>
       <a to="/">
