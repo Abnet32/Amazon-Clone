@@ -27,7 +27,6 @@ function Product() {
   return (
     <div className={classes.container}>
       {isLoading ? (
-        // <p className={classes.loading}>Loading products...</p>
       <Loader />
       ) : (
         <div className={classes.grid}>
