@@ -47,7 +47,7 @@
   display: flex;
   justify-content: center;
   gap: 40px;
-  padding-top: 40px;
+  padding: 40px;
 }
 .footer__bottom div {
   border: 1px solid #ddd;
@@ -64,7 +64,6 @@
 }
 .logo {
   margin-top: 12px;
-
 }
 .logo > a > img {
   border: none;
@@ -77,4 +76,51 @@
 .footer__bottom p {
   color: #ddd;
   font-size: 14px;
+}
+.footer__end {
+  background: #131a22;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #ddd;
+}
+.footer__endRight {
+  padding: 20px;
+}
+.footer__endLeft{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 80%;
+    gap: 10px;
+    padding: 20px;}
+.footer__endLeft li {
+    text-align: left;
+    list-style: none;
+    padding-bottom: 15px;
+    width: 110px;
+}
+.footer__endLeft li a {
+    text-decoration: none;
+    color: #ddd;
+    font-size: 14px;
+}
+.footer__endLeft li a:hover {
+    text-decoration: underline;
+}
+.footer__endLinks ul {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 10px;
+}
+.footer__endLinks ul li {
+  list-style: none;
+}
+.footer__endLinks ul li a {
+  text-decoration: none;
+  color: #ddd;
+}
+.footer__endLinks ul li a:hover {
+  text-decoration: underline;
 }

@@ -128,7 +128,147 @@ const Footer = () => {
           </a>
         </div>
       </section>
-      <section></section>
+      <section className={clases.footer__end}>
+        <div className={clases.footer__endLeft}>
+          <div>
+            <ul>
+              <li>
+                <a href="">Amazon Music Stream millions of songs</a>
+              </li>
+              <li>
+                <a href="">Amazon Business Everything For Your Business</a>
+              </li>
+              <li>
+                <a href="">IMDbPro Get Info Entertainment Professionals Need</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li>
+                <a href="">
+                  Amazon Ads Reach customers wherever they spend their time
+                </a>
+              </li>
+              <li>
+                <a href="">AmazonGlobal Ship Orders Internationally</a>
+              </li>
+              <li>
+                <a href="">
+                  Kindle Direct Publishing Indie Digital & Print Publishing Made
+                  Easy
+                </a>
+              </li>
+              <li>
+                <a href="">eero WiFi Stream 4K Video in Every Room</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li>
+                <a href="">6pm Score deals on fashion brands</a>
+              </li>
+              <li>
+                <a href="">
+                  Amazon Web Services Scalable Cloud Computing Services
+                </a>
+              </li>
+              <li>
+                <a href="">Prime Video Direct Video Distribution Made Easy</a>
+              </li>
+              <li>
+                <a href="">Blink Smart Security for Every Home</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li>
+                <a href="">AbeBooks Books, art & collectibles</a>
+              </li>
+              <li>
+                <a href="">
+                  Audible Listen to Books & Original Audio Performances
+                </a>
+              </li>
+              <li>
+                <a href="">Shopbop Designer Fashion Brands</a>
+              </li>
+              <li>
+                <a href="">Neighbors App Real-Time Crime & Safety Alerts</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li>
+                <a href="">ACX Audiobook Publishing Made Easy</a>
+              </li>
+              <li>
+                <a href="">Box Office Mojo Find Movie Box Office Data</a>
+              </li>
+              <li>
+                <a href="">Woot! Deals and Shenanigans</a>
+              </li>
+              <li>
+                <a href="">
+                  Amazon Subscription Boxes Top subscription boxes – right to
+                  your door
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li>
+                <a href="">Sell on Amazon Start a Selling Account</a>
+              </li>
+              <li>
+                <a href="">Goodreads Book reviews & recommendations</a>
+              </li>
+              <li>
+                <a href="">Zappos Shoes & Clothing</a>
+              </li>
+              <li>
+                <a href="">PillPack Pharmacy Simplified</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <ul>
+              <li>
+                <a href="">Veeqo Shipping Software Inventory Management</a>
+              </li>
+              <li>
+                <a href="">IMDb Movies, TV & Celebrities</a>
+              </li>
+              <li>
+                <a href="">Ring Smart Home Security Systems</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className={clases.footer__endRight}>
+          <div className={clases.footer__endLinks}>
+            <ul>
+              <li>
+                <a href="">Conditions of Use</a>
+              </li>
+              <li>
+                <a href="">Privacy Notice</a>
+              </li>
+              <li>
+                <a href="">Consumer Health Data Privacy</a>
+              </li>
+              <li>
+                <a href="">Disclosure Your Ads Privacy Choices</a>
+              </li>
+            </ul>
+          </div>
+          <div>© 1996-2025, Amazon.com, Inc. or its affiliates</div>
+        </div>
+      </section>
     </div>
   );
 };
