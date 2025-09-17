@@ -79,6 +79,7 @@ span{
 
 .search select {
   border: none;
+   background-color: rgb(237, 245, 245);
 }
 .search input {
   outline: 1px solid white;

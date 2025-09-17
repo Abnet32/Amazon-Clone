@@ -15,6 +15,8 @@ const LowerHeader = () => {
         <li>Medical Care</li>
         <li>Best Sellers</li>
         <li>Amazon Basics</li>
+        <li>Groceries</li>
+        <li>Prime</li>
         <li>Prime Big Deal Day is October 7-8</li>
       </ul>
     </div>

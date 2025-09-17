@@ -3,7 +3,7 @@ import axios from "axios";
 import ProductCard from "./ProductCard";
 import classes from "./product.module.css";
 import { productUrl } from "../../API/endPoint";
-
+import Loader from "../Loader/Loader";
 
 function Product() {
   const [products, setProducts] = useState([]);
@@ -27,7 +27,8 @@ function Product() {
   return (
     <div className={classes.container}>
       {isLoading ? (
-        <p className={classes.loading}>Loading products...</p>
+        // <p className={classes.loading}>Loading products...</p>
+      <Loader />
       ) : (
         <div className={classes.grid}>
           {products.map((product) => (

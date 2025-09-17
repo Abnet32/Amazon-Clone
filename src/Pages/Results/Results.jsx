@@ -5,7 +5,7 @@ import axios from "axios";
 import { productUrl } from "../../API/endPoint";
 import ProductCard from "../../Components/Product/ProductCard";
 import classes from "./Results.module.css";
-// import Loader from "../../Components/Loader/Loader"; 
+import Loader from "../../Components/Loader/Loader";
 
 function Results() {
   const [results, setResults] = useState([]);
