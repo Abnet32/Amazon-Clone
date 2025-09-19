@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Layout from "../../Components/Layout/Layout"; // Corrected import
+import Layout from "../../Components/Layout/Layout";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { productUrl } from "../../API/endPoint";

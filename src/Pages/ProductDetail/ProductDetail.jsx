@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import LayOut from "../../Components/Layout/Layout";
+import LayOut from "../../Components/Layout/LayOut";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { productUrl } from "../../API/endPoint";
@@ -26,18 +26,22 @@ function ProductDetail() {
   }, [productId]);
   return (
     <LayOut>
-      {isLoading ? (
-        <Loader />
-      ) : (
-        <ProductCard
-          product={product}
-          key={product.id}
-          flex={true}
-          renderDesc={true}
-          renderAdd={true}
-          className={classes.products__container}
-        />
-      )}
+      <div className={classes.pageWrapper}>
+        {isLoading ? (
+          <Loader />
+        ) : (
+          <div className={classes.products__container}>
+            <ProductCard
+              product={product}
+              key={product.id}
+              flex={true}
+              renderDesc={false}
+              renderDetail={true}
+              renderAdd={true}
+            />
+          </div>
+        )}
+      </div>
     </LayOut>
   );
 }
