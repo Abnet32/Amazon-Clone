@@ -8,8 +8,10 @@ import classes from "./Cart.module.css";
 import { Type } from "../../Utility/action.type";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoIosArrowUp } from "react-icons/io";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import RemoveShoppingCartIcon from "@mui/icons-material/RemoveShoppingCart";
 function Cart() {
-  const [{ basket, user }, dispatch] = useContext(DataContext);
+  const [{ basket }, dispatch] = useContext(DataContext);
   const total = basket.reduce((amount, item) => {
     return item.price * item.amount + amount;
   }, 0);
@@ -50,14 +52,20 @@ function Cart() {
                     className={classes.btn}
                     onClick={() => increment(item)}
                   >
-                    <IoIosArrowUp size={30} />
+                    <AddShoppingCartIcon
+                      fontSize="large"
+                      className={classes.adCart}
+                    />
                   </button>
                   <h1>{item.amount}</h1>
                   <button
                     className={classes.btn}
                     onClick={() => decrement(item.id)}
                   >
-                    <IoIosArrowDown size={30} />
+                    <RemoveShoppingCartIcon
+                      fontSize="large"
+                      className={classes.rmCart}
+                    />
                   </button>
                 </div>
               </section>
