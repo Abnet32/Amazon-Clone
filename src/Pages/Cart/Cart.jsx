@@ -41,12 +41,14 @@ function Cart() {
           ) : (
             basket?.map((item, i) => (
               <section key={i} className={classes.cart__product}>
-                <ProductCard
-                  product={item}
-                  renderDesc={true}
-                  flex={true}
-                  renderAdd={false}
-                />
+                <div>
+                  <ProductCard
+                    product={item}
+                    renderDesc={true}
+                    flex={true}
+                    renderAdd={false}
+                  />
+                </div>
                 <div className={classes.btn_container}>
                   <button
                     className={classes.btn}
