@@ -157,11 +157,11 @@ span {
 .signOut {
   position: absolute;
   color: #000;
-  top: 60%;
+  top: 50%;
   right: 150px;
   width: max-content;
   background: #fff;
-  padding-top:  200px ;
+  padding:  50px 20px ;
   border-radius: 5px;
   text-decoration: underline;
   z-index: 1;
