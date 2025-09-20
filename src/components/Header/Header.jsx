@@ -5,17 +5,18 @@ import { SlLocationPin } from "react-icons/sl";
 import { FaSearch } from "react-icons/fa";
 import { LiaCartArrowDownSolid } from "react-icons/lia";
 import { Link } from "react-router-dom";
-
+import { auth } from "../../Utility/firebase";
 import classes from "./Header.module.css";
 import LowerHeader from "./LowerHeader";
 import { DataContext } from "../DataProvider/DataProvider";
+
 
 const Header = () => {
   const context = useContext(DataContext) || [
     { basket: [], user: null },
     () => {},
   ];
-  const [{ basket, user }, dispatch] = context;
+  const [{ basket, user }] = context;
 
   const totalItem = basket?.reduce(
     (amount, item) => amount + (item.amount || 1),
@@ -65,10 +66,16 @@ const Header = () => {
           <Link to={!user && "/auth"}>
             <div>
               {user ? (
-                <>
-                  <p>Hello, {user?.email?.split("@")[0]}</p>
-                  <span onClick={() => auth.signOut()}>Sign out</span>
-                </>
+                <div className={classes.accountsignupin}>
+                  <p>Hello, there</p>
+                  <span className={classes.signUp}>Account & Lists </span>
+                  <span
+                    className={classes.signOut}
+                    onClick={() => auth.signOut()}
+                  >
+                    sign out
+                  </span>
+                </div>
               ) : (
                 <>
                   <p>Hello, sign in</p>

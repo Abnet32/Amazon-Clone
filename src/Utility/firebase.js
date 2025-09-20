@@ -1,9 +1,8 @@
 // Import the functions you need from the SDKs you need
+// Importing Firebase modules using v9 syntax
 import { initializeApp } from "firebase/app";
-// Auth
 import { getAuth } from "firebase/auth";
-import 'firebase/compat/firestore';
-import "firebase/compat/auth";
+import { getFirestore } from "firebase/firestore";
 
 // Firestore
 const firebaseConfig = {
@@ -16,8 +15,6 @@ const firebaseConfig = {
   measurementId: "G-F0Q65Q435X",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
-export const db = app.firestore();
-export default app;
+export const db = getFirestore(app);

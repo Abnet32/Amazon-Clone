@@ -1,16 +1,16 @@
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-span{
-    font-weight: bold;
+span {
+  font-weight: bold;
 }
 
 .fixed {
   position: sticky;
   top: 0;
   z-index: 1;
-} 
+}
 .header__container {
   background-color: #131921;
   display: flex;
@@ -79,7 +79,7 @@ span{
 
 .search select {
   border: none;
-   background-color: rgb(237, 245, 245);
+  background-color: rgb(237, 245, 245);
 }
 .search input {
   outline: 1px solid white;
@@ -154,6 +154,24 @@ span{
   border-radius: 3px;
 }
 
+.signOut {
+  position: absolute;
+  color: #000;
+  top: 60%;
+  right: 150px;
+  width: max-content;
+  background: #fff;
+  padding-top:  200px ;
+  border-radius: 5px;
+  text-decoration: underline;
+  z-index: 1;
+  display: none;
+  cursor: pointer;
+}
+
+.accountsignupin:hover .signOut {
+  display: block;
+}
 .lower__container {
   color: white;
   background-color: #232f3e;
