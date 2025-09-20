@@ -67,7 +67,7 @@ const Header = () => {
             <div>
               {user ? (
                 <div className={classes.accountsignupin}>
-                  <p>Hello, Amazon</p>
+                  <p>Hello, {user?.displayName || "there"}</p>
                   <span className={classes.signUp}>Account & Lists </span>
                   <span
                     className={classes.signOut}
