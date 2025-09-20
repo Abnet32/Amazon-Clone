@@ -51,18 +51,32 @@ const Header = () => {
         {/* Right Side */}
         <div className={classes.order__container}>
           {/* Language Selector */}
-          <div className={classes.language}>
+          <Link
+            to="https://www.amazon.com/customer-preferences/edit?ie=UTF8&preferencesReturnUrl=%2F&ref_=topnav_lang_ais"
+            className={classes.language}
+          >
             <img src={flag} alt="flag" />
             <select>
               <option value="">EN</option>
             </select>
-          </div>
+          </Link>
 
           {/* Account & Lists */}
-          <div className={classes.account}>
-            <p>Hello, {user ? user.name : "Sign In"}</p>
-            <span>Account & Lists</span>
-          </div>
+          <Link to={!user && "/auth"}>
+            <div>
+              {user ? (
+                <>
+                  <p>Hello, {user?.email?.split("@")[0]}</p>
+                  <span onClick={() => auth.signOut()}>Sign out</span>
+                </>
+              ) : (
+                <>
+                  <p>Hello, sign in</p>
+                  <span>Account & Lists</span>
+                </>
+              )}
+            </div>
+          </Link>
 
           {/* Orders */}
           <Link to="/orders" className={classes.orders}>
