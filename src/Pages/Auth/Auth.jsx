@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
+import logo from "../../assets/images/newLogo.png";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import classes from "./SignIn.module.css";
 import { auth } from "../../Utility/firebase";
 import { ClipLoader } from "react-spinners";
 import {
@@ -8,130 +10,130 @@ import {
 } from "firebase/auth";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import { Type } from "../../Utility/action.type";
-import classes from "./SignIn.module.css";
-
 
 function Auth() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [{ basket, user }, dispatch] = useContext(DataContext);
   const [loading, setLoading] = useState({ signIn: false, signUp: false });
-  const [{ user }, dispatch] = useContext(DataContext);
   const navigate = useNavigate();
   const NavStateData = useLocation();
-
+  // console.log(NavStateData);
   const authHandler = async (e) => {
     e.preventDefault();
-    const action = e.target.name;
-    setError("");
-
-    if (action === "signin") {
+    // console.log(e.target.name);
+    if (e.target.name == "signin") {
+      // firebase Auth
       setLoading({ ...loading, signIn: true });
       signInWithEmailAndPassword(auth, email, password)
         .then((userInfo) => {
-          dispatch({ type: Type.SET_USER, user: userInfo.user });
+          dispatch({
+            type: Type.SET_USER,
+            user: userInfo.user,
+          });
           setLoading({ ...loading, signIn: false });
           navigate(NavStateData?.state?.redirect || "/");
         })
         .catch((err) => {
+          // console.log(err);
           setLoading({ ...loading, signIn: false });
           setError(err.message);
         });
     } else {
       setLoading({ ...loading, signUp: true });
-      createUserWithEmailAndPassword(auth, email, password)
+      createUserWithEmailAndPassword(auth, name, email, password)
         .then((userInfo) => {
-          dispatch({ type: Type.SET_USER, user: userInfo.user });
+          dispatch({
+            type: Type.SET_USER,
+            user: userInfo.user,
+          });
           setLoading({ ...loading, signUp: false });
           navigate(NavStateData?.state?.redirect || "/");
         })
         .catch((err) => {
+          // console.log(err);
           setLoading({ ...loading, signUp: false });
           setError(err.message);
         });
     }
   };
-
+  // console.log(user);
   return (
-    <div className={classes.loginContainer}>
-      <div className={classes.loginCard}>
-        <div className={classes.loginHeader}>
-          <h2>Welcome Back</h2>
-          <p>Sign in to your account</p>
-        </div>
-
+    <section className={classes.login}>
+      {/* logo */}
+      <Link to="/">
+        <img src={logo} alt="" />
+      </Link>
+      {/* form */}
+      <div className={classes.login__container}>
+        <h1>Sign In</h1>
         {NavStateData?.state?.msg && (
-          <div className={classes.navMsg}>{NavStateData.state.msg}</div>
+          <small
+            style={{
+              padding: "5px",
+              textAlign: "center",
+              color: "red",
+              fontWeight: "bold",
+            }}
+          >
+            {NavStateData.state.msg}
+          </small>
         )}
-
-        <form className={classes.loginForm}>
-          <div className={classes.formGroup}>
-            <label htmlFor="email">Email Address</label>
+        <form action="">
+          <div>
+            <label htmlFor="email">Email</label>
             <input
-              type="email"
-              id="email"
+              autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
+              type="email"
+              id="email"
             />
           </div>
-
-          <div className={classes.formGroup}>
+          <div>
             <label htmlFor="password">Password</label>
             <input
-              type="password"
-              id="password"
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              required
+              type="password"
+              id="password"
             />
           </div>
-
-          {error && <div className={classes.errorMessage}>{error}</div>}
-
           <button
             type="submit"
+            onClick={authHandler}
             name="signin"
-            onClick={authHandler}
-            className={classes.loginBtn}
+            className={classes.login__signInButton}
           >
-            {loading.signIn ? <ClipLoader color="#fff" size={18} /> : "Sign In"}
-          </button>
-
-          <button
-            type="submit"
-            name="signUp"
-            onClick={authHandler}
-            className={classes.registerBtn}
-          >
-            {loading.signUp ? (
-              <ClipLoader color="#000" size={18} />
-            ) : (
-              "Create Your Account"
-            )}
+            {loading.signIn ? <ClipLoader color="#000" size={15} /> : "Sign In"}
           </button>
         </form>
-
-        <div className={classes.divider}>
-          <span>or continue with</span>
-        </div>
-
-        <div className={classes.socialLogin}>
-          <button className={`${classes.socialBtn} ${classes.googleBtn}`}>
-            Google
-          </button>
-          <button className={`${classes.socialBtn} ${classes.appleBtn}`}>
-            Apple
-          </button>
-        </div>
-
-        <div className={classes.signupLink}>
-          <p>
-            Don't have an account? <Link to="/signup">Sign up</Link>
-          </p>
-        </div>
+        {/* agreement */}
+        <p>
+          By signing-in you agree to AMAZON FAKE CLONE conditions of use and
+          sale.Please see our privacy Notice,our cookies Notice and our
+          Interst-based Ads Notice.
+        </p>
+        {/* creare account button */}
+        <button
+          type="submit"
+          onClick={authHandler}
+          name="signUp"
+          className={classes.login__registerButton}
+        >
+          {loading.signUp ? (
+            <ClipLoader color="#000" size={15} />
+          ) : (
+            "Create Your Amazon Account"
+          )}
+        </button>
+        {error && (
+          <small style={{ paddingTop: "5px", color: "red" }}>{error}</small>
+        )}
       </div>
-    </div>
+    </section>
   );
 }
 
