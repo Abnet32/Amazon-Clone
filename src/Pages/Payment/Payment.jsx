@@ -4,50 +4,78 @@ import classes from "./Payment.module.css";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import ProductCard from "../../Components/Product/ProductCard";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import CurencyFormat from "../../Components/CurrencyFormat/CurencyFormat";
+import CurrencyFormat from "../../Components/CurrencyFormat/CurencyFormat";
 import { axiosInstance } from "../../API/axios";
 import { ClipLoader } from "react-spinners";
 import { db } from "../../Utility/firebase";
 import { doc, setDoc, collection } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import { Type } from "../../Utility/action.type";
+
 function Payment() {
   const [{ basket, user }, dispatch] = useContext(DataContext);
-  const totalItem = basket?.reduce((amount, item) => {
-    return item.amount + amount;
-  }, 0);
-  const totalPrice = basket.reduce((amount, item) => {
-    return item.price * item.amount + amount;
-  }, 0);
+  const totalItem = basket?.reduce((amount, item) => amount + item.amount, 0);
+  const totalPrice = basket?.reduce(
+    (amount, item) => amount + item.price * item.amount,
+    0
+  );
+
   const [cardError, setCardError] = useState(null);
   const [processing, setProcessing] = useState(false);
+
   const stripe = useStripe();
   const elements = useElements();
   const navigate = useNavigate();
+
   const handleChange = (e) => {
-    e?.error?.message ? setCardError(e?.error?.message) : setCardError("");
+    if (e?.error?.message) setCardError(e.error.message);
+    else setCardError("");
   };
 
   const paymentHandler = async (e) => {
     e.preventDefault();
+    setProcessing(true);
+    setCardError("");
+
+    if (!stripe || !elements) {
+      setCardError("Stripe has not loaded yet. Please wait and try again.");
+      setProcessing(false);
+      return;
+    }
+
+    const cardElement = elements.getElement(CardElement);
+    if (!cardElement) {
+      setCardError("Card element not found. Please refresh and try again.");
+      setProcessing(false);
+      return;
+    }
+
     try {
-      setProcessing(true);
-      // step-1 function contact to client secret key
-      const response = await axiosInstance({
-        method: "post",
-        url: `/payment/create?total=${totalPrice * 100}`,
-      });
+      // Step 1: Get client secret from backend
+      const response = await axiosInstance.post(
+        `/payment/create?total=${totalPrice * 100}`
+      );
       const clientSecret = response.data?.clientSecret;
-      // step-2 client side confirmation
-      const { paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement),
-        },
+
+      if (!clientSecret) {
+        setCardError("Failed to get payment client secret. Please try again.");
+        setProcessing(false);
+        return;
+      }
+
+      // Step 2: Confirm payment
+      const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: { card: elements.getElement(CardElement) },
       });
-      console.log(paymentIntent);
 
-      // step-3 after confirmation   --->order fire-store database save clear basket
 
+      if (error) {
+        setCardError(error.message);
+        setProcessing(false);
+        return;
+      }
+
+      // Step 3: Save order to Firestore
       try {
         await setDoc(
           doc(collection(db, "user"), user.uid, "orders", paymentIntent.id),
@@ -57,28 +85,34 @@ function Payment() {
             created: paymentIntent.created,
           }
         );
-        console.log("Order saved successfully!");
+
         dispatch({ type: Type.EMPTY_BASKET });
-        navigate("/orders", { state: { msg: "you have placed new order" } });
-      } catch (error) {
-        console.error("Error writing document: ", error);
+        navigate("/orders", { state: { msg: "You have placed a new order!" } });
+      } catch (firestoreError) {
+        console.error("Error saving order:", firestoreError);
+        setCardError(
+          "Payment succeeded, but failed to save order. Contact support."
+        );
       }
+
       setProcessing(false);
-    } catch (error) {
+    } catch (err) {
+      console.error(err);
+      setCardError("Payment failed. Please try again.");
       setProcessing(false);
-      console.log(error);
     }
   };
 
   return (
     <LayOut>
-      {/* header */}
-      <div className={classes.payment__header}>Checkout ({totalItem})items</div>
-      {/* payment methods */}
+      <div className={classes.payment__header}>
+        Checkout ({totalItem} items)
+      </div>
+
       <section className={classes.payment}>
-        {/* Addresss */}
+        {/* Delivery Address */}
         <div className={classes.flex}>
-          <h3>Delivery address</h3>
+          <h3>Delivery Address</h3>
           <div>
             <div>{user?.email}</div>
             <div>Shiro Meda Street</div>
@@ -86,7 +120,8 @@ function Payment() {
           </div>
         </div>
         <hr />
-        {/* product */}
+
+        {/* Review Items */}
         <div className={classes.flex}>
           <h3>Review items and delivery</h3>
           <div className={classes.payment__items}>
@@ -103,34 +138,32 @@ function Payment() {
           </div>
         </div>
         <hr />
-        {/* cart form */}
+
+        {/* Payment Form */}
         <div className={classes.flex}>
-          <h3>Payment methods</h3>
+          <h3>Payment Methods</h3>
           <div className={classes.payment__card__container}>
             <div className={classes.payment__details}>
               <form onSubmit={paymentHandler}>
-                {/* error for card */}
                 {cardError && (
                   <small style={{ color: "red" }}>{cardError}</small>
                 )}
-                {/* cardElement */}
                 <CardElement onChange={handleChange} />
-                {/* price */}
+
                 <div className={classes.payment__price}>
-                  <div>
-                    <span style={{ display: "flex", gap: "10px" }}>
-                      <p>Total Order | </p>{" "}
-                      <CurencyFormat amount={totalPrice} />
-                    </span>
+                  <div style={{ display: "flex", gap: "10px" }}>
+                    <p>Total Order | </p>
+                    <CurrencyFormat amount={totalPrice} />
                   </div>
-                  <button type="submit">
+
+                  <button type="submit" disabled={!stripe || processing}>
                     {processing ? (
                       <div className={classes.loading}>
                         <ClipLoader color="gray" size={12} />
                         <p>Please wait ...</p>
                       </div>
                     ) : (
-                      "Buy Now"
+                      "Pay Now"
                     )}
                   </button>
                 </div>
