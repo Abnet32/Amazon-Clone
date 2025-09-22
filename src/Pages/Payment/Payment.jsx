@@ -89,6 +89,7 @@ function Payment() {
         {/* product */}
         <div className={classes.flex}>
           <h3>Review items and delivery</h3>
+          <div className={classes.flex}>
             {basket?.map((item) => (
               <ProductCard
                 product={item}
@@ -99,6 +100,7 @@ function Payment() {
                 renderAdd={false}
               />
             ))}
+          </div>
         </div>
         <hr />
         {/* cart form */}
