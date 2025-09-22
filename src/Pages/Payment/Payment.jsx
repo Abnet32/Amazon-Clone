@@ -82,18 +82,23 @@ function Payment() {
           <div>
             <div>{user?.email}</div>
             <div>1234 react</div>
-            <div>Ethiopia Soddo</div>
+            <div>Ethiopia, Addis Ababa</div>
           </div>
         </div>
         <hr />
         {/* product */}
         <div className={classes.flex}>
           <h3>Review items and delivery</h3>
-          <div>
             {basket?.map((item) => (
-              <ProductCard product={item} flex={true} key={item.id} />
+              <ProductCard
+                product={item}
+                key={item.id}
+                flex={true}
+                renderDesc={false}
+                renderDetail={true}
+                renderAdd={false}
+              />
             ))}
-          </div>
         </div>
         <hr />
         {/* cart form */}

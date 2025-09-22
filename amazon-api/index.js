@@ -1,8 +1,12 @@
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import Stripe from "stripe";
+
 dotenv.config();
-const stripe = require("stripe")(process.env.STRIPE_KEY);
+const stripe = new Stripe(
+  "sk_test_51S9QPyPtguzKrL0HrPnZ8Zp50EA0o6oNjvNlOWtTnUCApVQJNQayaSj47anII6Ip5KdCqFolii855KXt973RWLlt00DXQMnmo3"
+);
 
 const app = express();
 app.use(cors({ origin: true }));
