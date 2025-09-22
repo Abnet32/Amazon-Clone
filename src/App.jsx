@@ -1,5 +1,4 @@
 import { useContext, useEffect } from "react";
-import "./"
 import Routing from "./Router";
 import { auth } from "./Utility/firebase";
 import { DataContext } from "./Components/DataProvider/DataProvider";
