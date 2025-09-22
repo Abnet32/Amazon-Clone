@@ -81,15 +81,15 @@ function Payment() {
           <h3>Delivery address</h3>
           <div>
             <div>{user?.email}</div>
-            <div>1234 react</div>
-            <div>Ethiopia, Addis Ababa</div>
+            <div>Shiro Meda Street</div>
+            <div>Addis Ababa, Ethiopia</div>
           </div>
         </div>
         <hr />
         {/* product */}
         <div className={classes.flex}>
           <h3>Review items and delivery</h3>
-          <div className={classes.flex}>
+          <div className={classes.payment__items}>
             {basket?.map((item) => (
               <ProductCard
                 product={item}

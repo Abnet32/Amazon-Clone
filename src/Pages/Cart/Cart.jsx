@@ -15,6 +15,7 @@ function Cart() {
   const total = basket.reduce((amount, item) => {
     return item.price * item.amount + amount;
   }, 0);
+
   // console.log(basket);
 
   const increment = (item) => {
@@ -42,33 +43,35 @@ function Cart() {
             basket?.map((item, i) => (
               <section key={i} className={classes.cart__product}>
                 <div>
-                  <ProductCard
-                    product={item}
-                    renderDesc={true}
-                    flex={true}
-                    renderAdd={false}
-                  />
-                </div>
-                <div className={classes.btn_container}>
-                  <button
-                    className={classes.btn}
-                    onClick={() => increment(item)}
-                  >
-                    <AddShoppingCartIcon
-                      fontSize="large"
-                      className={classes.adCart}
+                  <div>
+                    <ProductCard
+                      product={item}
+                      renderDesc={true}
+                      flex={true}
+                      renderAdd={false}
                     />
-                  </button>
-                  <h1>{item.amount}</h1>
-                  <button
-                    className={classes.btn}
-                    onClick={() => decrement(item.id)}
-                  >
-                    <RemoveShoppingCartIcon
-                      fontSize="large"
-                      className={classes.rmCart}
-                    />
-                  </button>
+                  </div>
+                  <div className={classes.btn_container}>
+                    <button
+                      className={classes.btn}
+                      onClick={() => increment(item)}
+                    >
+                      <AddShoppingCartIcon
+                        fontSize="large"
+                        className={classes.adCart}
+                      />
+                    </button>
+                    <h1>{item.amount}</h1>
+                    <button
+                      className={classes.btn}
+                      onClick={() => decrement(item.id)}
+                    >
+                      <RemoveShoppingCartIcon
+                        fontSize="large"
+                        className={classes.rmCart}
+                      />
+                    </button>
+                  </div>
                 </div>
               </section>
             ))
@@ -84,9 +87,7 @@ function Cart() {
               <input type="checkbox" />
               <small>This order contains a gift</small>
             </span>
-            <Link to="/payments" >
-              continue to checkout
-            </Link>
+            <Link to="/payments">continue to checkout</Link>
           </div>
         )}
       </section>

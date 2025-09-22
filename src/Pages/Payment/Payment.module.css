@@ -1,74 +1,155 @@
+/* ----------------- PAGE HEADER ----------------- */
 .payment__header {
   padding: 20px;
   text-align: center;
-  font-size: 24px;
-  background-color: rgb(234, 237, 237);
+  font-size: 28px;
+  font-weight: 600;
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #ddd;
 }
 
+/* ----------------- MAIN PAYMENT SECTION ----------------- */
 .payment {
-  padding: 30px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
 }
 
+/* ----------------- FLEX ROWS ----------------- */
 .flex {
   display: flex;
   gap: 20px;
-  padding: 30px;
-    align-items: center;
-  flex-direction: row;       /* horizontal layout */
-  flex-wrap: wrap;           /* allows wrapping to next line if many items */
-  gap: 16px;   
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
-.flex h3 {
-  min-width: 250px;
+/* ----------------- PRODUCT ITEMS ROW ----------------- */
+.payment__items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 10px;
+  align-items: stretch; /* makes all cards same height */
 }
 
-.flex img {
-  max-width: 300px;
-  max-height: 300px;
-  object-fit: contain;
-  margin-bottom: 20px;
+/* ----------------- PRODUCT CARD ----------------- */
+.card {
+  flex: 1 1 200px; /* responsive width */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  min-height: 350px; /* same height for all cards */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
-.payment__card__container {
-  max-width: 350px;
+/* Product image */
+ .card img {
   width: 100%;
+  height: 180px;
+  object-fit: contain;
+  margin-bottom: 12px;
+} 
+
+/* Product title bold */
+.card .title {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+/* Product price */
+.card .price {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* ----------------- PAYMENT CARD FORM ----------------- */
+.payment__card__container {
+  max-width: 400px;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .payment__details {
-  font-size: 18px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
+.payment__details form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.payment__details .StripeElement {
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.payment__error {
+  color: red;
+  font-size: 14px;
+}
+
+/* ----------------- PRICE AND BUTTON ----------------- */
 .payment__price {
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
 }
 
 .payment__price > div {
   display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 16px;
-  gap: 10px;
+  font-weight: 500;
 }
 
 .payment__details button {
-  margin-top: 15px;
+  margin-top: 10px;
   width: 100%;
   border: none;
-  background-color: var(--primary-color);
+  background-color: #f0c14b;
   border-radius: 5px;
-  padding: 8px 10px;
+  padding: 10px;
+  font-weight: 600;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .payment__details button:hover {
-  background-color: var(--primary-shade);
+  background-color: #e2b33c;
 }
 
 .loading {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   justify-content: center;
-  color: rgb(52, 52, 52);
+}
+
+/* ----------------- RESPONSIVE DESIGN ----------------- */
+@media (max-width: 1024px) {
+  .payment {
+    padding: 20px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -78,5 +159,10 @@
 
   .flex img {
     width: 150px !important;
+    height: auto;
+  }
+
+  .payment__card__container {
+    max-width: 100%;
   }
 }

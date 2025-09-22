@@ -45,7 +45,7 @@
 }
 
 .cart__container {
-  padding: 20px;
+  padding: 50px;
 }
 
 .cart__container div {
@@ -63,8 +63,9 @@
 
 .subtotal {
   padding: 20px;
+  margin-top: 50px;
   min-width: 300px;
-  height: 80%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -79,8 +80,7 @@
   width: 60%;
   border-radius: 5px;
   background-color: rgba(255, 166, 0, 0.856);
-    border: 1px solid #a88734;
-
+  border: 1px solid #a88734;
   padding: 5px;
   text-decoration: none;
   color: black;
