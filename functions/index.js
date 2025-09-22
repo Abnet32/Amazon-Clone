@@ -1,3 +1,5 @@
+const { onRequest } = require("firebase-functions/v2/https");
+const logger = require("firebase-functions/logger");
 const express = require("express");
 const cors = require("cors");
 const dotenv = require("dotenv");
@@ -28,6 +30,4 @@ app.post("/payment/create", async (req, res) => {
     });
   }
 });
-app.listen(3000, () => {
-  console.log("Amazon server running on port:3000 http://localhost:3000");
-});
+exports.api = onRequest(app);
