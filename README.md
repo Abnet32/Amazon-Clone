@@ -1,12 +1,41 @@
-# React + Vite
+🛒 Amazon Clone
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack Amazon Clone web application built with modern technologies, replicating the core features of Amazon’s e-commerce platform. Users can browse products, manage their cart, securely checkout, and experience a smooth UI similar to the real Amazon site.
 
-Currently, two official plugins are available:
+🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+✅ User Authentication (Sign Up / Sign In)
+✅ Product Listing & Categories
+✅ Product Search & Filtering
+✅ Add to Cart / Remove from Cart
+✅ Order Checkout & Stripe Payment Integration
+✅ Responsive Design (Mobile-friendly)
+✅ Real-time Updates with Context API / Redux (if used)
+✅ Firebase / MongoDB backend (depending on your setup)
 
-## Expanding the ESLint configuration
+🖥️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Frontend:
+
+React.js (Vite) ⚡
+
+React Router
+
+Context API / Redux (for state management)
+
+
+Backend:
+
+Node.js + Express.js
+
+Firebase 
+
+Payments:
+
+Stripe API
+
+Deployment:
+
+Vercel (Frontend)
+
+Firebase / Render / Railway (Backend)
