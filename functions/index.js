@@ -1,10 +1,10 @@
-const { onRequest } = require("firebase-functions/v2/https");
-const logger = require("firebase-functions/logger");
-const express = require("express");
-const cors = require("cors");
-const dotenv = require("dotenv");
+import { onRequest } from "firebase-functions/v2/https";
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
 dotenv.config();
-const stripe = require("stripe")(process.env.STRIPE_KEY);
+import Stripe from "stripe";
+const stripe = new Stripe(process.env.STRIPE_KEY);
 
 const app = express();
 app.use(cors({ origin: true }));
@@ -30,4 +30,4 @@ app.post("/payment/create", async (req, res) => {
     });
   }
 });
-exports.api = onRequest(app);
+export const api = onRequest(app);
