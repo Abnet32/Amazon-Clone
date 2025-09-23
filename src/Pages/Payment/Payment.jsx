@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
-import LayOut from "../../Components/Layout/LayOut";
+import LayOut from "../../Components/Layout/Layout";
 import classes from "./Payment.module.css";
 import { DataContext } from "../../Components/DataProvider/DataProvider";
 import ProductCard from "../../Components/Product/ProductCard";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import CurrencyFormat from "../../Components/CurrencyFormat/CurencyFormat";
+import CurrencyFormat from "../../Components/CurrencyFormat/CurrencyFormat";
 import { axiosInstance } from "../../API/axios";
 import { ClipLoader } from "react-spinners";
 import { db } from "../../Utility/firebase";
@@ -64,10 +64,12 @@ function Payment() {
       }
 
       // Step 2: Confirm payment
-      const { error, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: { card: elements.getElement(CardElement) },
-      });
-
+      const { error, paymentIntent } = await stripe.confirmCardPayment(
+        clientSecret,
+        {
+          payment_method: { card: elements.getElement(CardElement) },
+        }
+      );
 
       if (error) {
         setCardError(error.message);

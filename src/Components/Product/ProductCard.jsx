@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import Rating from "@mui/material/Rating";
-import CuurencyFormat from "../CurrencyFormat/CurencyFormat";
+import CurrencyFormat from "../CurrencyFormat/CurrencyFormat";
 import classes from "./product.module.css";
 import { Link } from "react-router-dom";
 import { DataContext } from "../DataProvider/DataProvider";
@@ -51,7 +51,7 @@ function ProductCard({
         </div>
 
         <div className={classes.price}>
-          <CuurencyFormat amount={price} />
+          <CurrencyFormat amount={price} />
         </div>
 
         {/* render Add to Cart button only if renderAdd is true */}

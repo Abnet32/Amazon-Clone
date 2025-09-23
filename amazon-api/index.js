@@ -4,9 +4,7 @@ import dotenv from "dotenv";
 import Stripe from "stripe";
 
 dotenv.config();
-const stripe = new Stripe(
-  "sk_test_51S9QPyPtguzKrL0HrPnZ8Zp50EA0o6oNjvNlOWtTnUCApVQJNQayaSj47anII6Ip5KdCqFolii855KXt973RWLlt00DXQMnmo3"
-);
+const stripe = new Stripe(import.meta.env.VITE_STRIPE_KEY);
 
 const app = express();
 app.use(cors({ origin: true }));
