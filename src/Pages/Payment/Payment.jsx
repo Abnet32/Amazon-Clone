@@ -165,7 +165,7 @@ function Payment() {
                         <p>Please wait ...</p>
                       </div>
                     ) : (
-                      "Pay Now"
+                      "Buy Now"
                     )}
                   </button>
                 </div>
