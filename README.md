@@ -6,11 +6,10 @@ A full-stack Amazon Clone web application built with modern technologies, replic
 
 ✅ User Authentication (Sign Up / Sign In)
 ✅ Product Listing & Categories
-✅ Product Search & Filtering
 ✅ Add to Cart / Remove from Cart
 ✅ Order Checkout & Stripe Payment Integration
 ✅ Responsive Design (Mobile-friendly)
-✅ Real-time Updates with Context API / Redux (if used)
+✅ Real-time Updates with Context API (if used)
 ✅ Firebase / MongoDB backend (depending on your setup)
 
 🖥️ Tech Stack
@@ -21,7 +20,7 @@ React.js (Vite) ⚡
 
 React Router
 
-Context API / Redux (for state management)
+Context API  (for state management)
 
 
 Backend:
@@ -38,4 +37,4 @@ Deployment:
 
 Vercel (Frontend)
 
-Firebase / Render / Railway (Backend)
+Firebase / Render  (Backend)
